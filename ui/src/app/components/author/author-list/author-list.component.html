@@ -1,0 +1,63 @@
+<section class="author-list">
+  <div class="author-list__header">
+    <h3 class="author-list__title">Authors</h3>
+    <div>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="search" #authorSearch>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <div class="author-list__table-container table-responsive">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th>#</th>
+          <th>Full Name</th>
+          <th>Email</th>
+          <th>Birth Date</th>
+          <th>TOTAL ATR1 VALUE</th>
+          <th>TOTAL ATR2 VALUE</th>
+          <th>TOTAL ATR3 VALUE</th>
+          <th>TOTAL ATR4 VALUE</th>
+          <th>TOTAL ATR5 VALUE</th>
+          <th>TOTAL ATR6 VALUE</th>
+          <th>TOTAL ATR7 VALUE</th>
+          <th>TOTAL ATR8 VALUE</th>
+          <th>TOTAL ATR9 VALUE</th>
+          <th>TOTAL ATR10 VALUE</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let author of getFilteredListOfAuthors(authorSearch.value) | slice: (page-1) * pageSize : page * pageSize">
+          <td> {{ author.id }} </td>
+          <td> {{ author.first_name + ' ' + author.last_name }} </td>
+          <td> {{ author.email }} </td>
+          <td> {{ author.birthdate }} </td>
+          <td> {{ author.attr1 ? author.attr1 : 'N/A'}} </td>
+          <td> {{ author.attr2 ? author.attr2 : 'N/A' }} </td>
+          <td> {{ author.attr3 ? author.attr3 : 'N/A'}} </td>
+          <td> {{ author.attr4 ? author.attr4 : 'N/A'}} </td>
+          <td> {{ author.attr5 ? author.attr5 : 'N/A'}} </td>
+          <td> {{ author.attr6 ? author.attr6 : 'N/A'}} </td>
+          <td> {{ author.attr7 ? author.attr7 : 'N/A'}} </td>
+          <td> {{ author.attr8 ? author.attr8 : 'N/A'}} </td>
+          <td> {{ author.attr9 ? author.attr9 : 'N/A'}} </td>
+          <td> {{ author.attr10 ? author.attr10 : 'N/A'}} </td>
+          <td>
+            <button class="btn btn-dark" (click)="viewAuthorDetails(author)">View</button>
+            <button class="btn btn-warning my-2" (click)="editAuthorDetails(author)">Edit</button>
+            <button class="btn btn-danger" (click)="deleteAuthorConfirmation(author)">Delete</button>
+          </td>
+        </tr>
+        <tr *ngIf="getFilteredListOfAuthors().length < 1">
+          <td colspan="15" class="text-center">
+            No Authors to display!
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <ngb-pagination [collectionSize]="getFilteredListOfAuthors().length" [(page)]="page" [pageSize]="pageSize"></ngb-pagination>
+  </div>
+</section>

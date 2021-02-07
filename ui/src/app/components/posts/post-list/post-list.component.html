@@ -1,0 +1,61 @@
+<section class="posts-list">
+  <div class="posts-list__header">
+    <h3 class="posts-list__title">Posts</h3>
+    <div>
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="search" #postSearch>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <div class="posts-list__table-container table-responsive">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th>#</th>
+          <th>Author</th>
+          <th>Title</th>
+          <th> ATR1 </th>
+          <th> ATR2 </th>
+          <th> ATR3 </th>
+          <th> ATR4 </th>
+          <th> ATR5 </th>
+          <th> ATR6 </th>
+          <th> ATR7 </th>
+          <th> ATR8 </th>
+          <th> ATR9 </th>
+          <th> ATR10 </th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let post of getFilteredListOfPosts(postSearch.value) | slice: (page-1) * pageSize : page * pageSize">
+          <td> {{ post.id }} </td>
+          <td> {{ post.author }} </td>
+          <td> {{ post.title }} </td>
+          <td> {{ post.atr1 ? post.atr1 : 'N/A'}} </td>
+          <td> {{ post.atr2 ? post.atr2 : 'N/A' }} </td>
+          <td> {{ post.atr3 ? post.atr3 : 'N/A'}} </td>
+          <td> {{ post.atr4 ? post.atr4 : 'N/A'}} </td>
+          <td> {{ post.atr5 ? post.atr5 : 'N/A'}} </td>
+          <td> {{ post.atr6 ? post.atr6 : 'N/A'}} </td>
+          <td> {{ post.atr7 ? post.atr7 : 'N/A'}} </td>
+          <td> {{ post.atr8 ? post.atr8 : 'N/A'}} </td>
+          <td> {{ post.atr9 ? post.atr9 : 'N/A'}} </td>
+          <td> {{ post.atr10 ? post.atr10 : 'N/A'}} </td>
+          <td>
+            <button class="btn btn-dark" (click)="viewPostDetails(post)">View</button>
+            <button class="btn btn-warning my-2" (click)="editPostDetails(post)">Edit</button>
+            <button class="btn btn-danger" (click)="deletePostConfirmation(post)">Delete</button>
+          </td>
+        </tr>
+        <tr *ngIf="getFilteredListOfPosts().length < 1">
+          <td colspan="15" class="text-center">
+            No Posts to display!
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <ngb-pagination [collectionSize]="getFilteredListOfPosts().length" [(page)]="page" [pageSize]="pageSize"></ngb-pagination>
+  </div>
+</section>

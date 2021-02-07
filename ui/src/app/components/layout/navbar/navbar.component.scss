@@ -1,0 +1,36 @@
+.main-navbar {
+  position: relative;
+  padding: 10px 50px;
+  font-size: 20px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: space-around;
+  background-color: var(--app-secondary);
+
+  &__navigation {
+    display: flex;
+  }
+
+  &__link {
+    text-decoration: none;
+    cursor: pointer;
+    margin-right: 1rem;
+    align-self: center;
+    color: var(--app-text-light);
+    text-transform: uppercase;
+    transition: all 0.15s ease;
+  }
+
+  &__link:hover {
+    transform: scale(1.1);
+  }
+
+  &__title {
+    cursor: pointer;
+    transition: all 0.3 ease;
+  }
+
+  &__title:hover {
+    color: var(--app-text-light);
+  }
+}

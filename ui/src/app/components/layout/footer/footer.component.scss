@@ -1,0 +1,12 @@
+.footer-container {
+  box-shadow: 3px 3px 5px 0 rgba(0, 0, 0, 0.3);
+  background-color: var(--app-secondary);
+  position: relative;
+
+  &__text {
+    color: var(--app-text-light);
+    text-align: center;
+    margin-bottom: 0;
+    padding: 10px;
+  }
+}

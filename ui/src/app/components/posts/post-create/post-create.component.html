@@ -1,0 +1,86 @@
+<button class="btn btn-dark" (click)="openCreatePostModal(createPostModal)">Create Post</button>
+
+
+<ng-template let-modal #createPostModal>
+  <div class="modal-header">
+    <h3 class="modal-title">Add Post</h3>
+    <button type="button" class="close" aria-label="Close" (click)="closeModal()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="createPostForm">
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label for="postTitle">Title</label>
+            <input type="text" class="form-control" formControlName="title">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 col-lg-6">
+          <div class="form-group">
+            <label for="postDate">Date</label>
+            <input type="date" name="postDate" id="postDate" formControlName="date" class="form-control">
+          </div>
+        </div>
+        <div class="col-sm-12 col-lg-6">
+          <div class="form-group">
+            <label for="authorSelect">Author</label>
+            <select name="authorSelect" id="authorSelect" formControlName="author" class="form-control">
+              <option>
+                <input type="text" class="form-control" #authorNameSearch>
+              </option>
+              <option *ngFor="let author of getFilteredListOfAuthors(authorNameSearch.value)" [ngValue]="author">
+                {{ author.first_name + ' ' + author.last_name }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" name="description" formControlName="description">
+              </textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="form-group">
+            <label for="content">Content</label>
+            <textarea class="form-control" name="content" formControlName="content">
+              </textarea>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-12 col-lg 4">
+          <div class="form-group">
+            <label for="attributeName">Attribute Name</label>
+            <select name="attributeName" id="attributeName" class="form-control" #attrName>
+              <option *ngFor="let attribute of listOfAttributes" [value]="attribute.attributeName">
+                {{ attribute.attributeName }}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="col-sm-12 col-lg 4">
+          <div class="form-group">
+            <label for="attrValue">Attribute Value</label>
+            <input type="number" name="attrValue" id="attrValue" class="form-control" #attrValue>
+          </div>
+        </div>
+        <div class="col-sm-12 col-lg 4">
+          <button class="btn btn-primary" (click)="addNewAttributeToForm(attrName.value, attrValue.value)">Add Attribute</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-primary" [disabled]="!createPostForm.valid" (click)="handleFormSubmit()">Create Post</button>
+  </div>
+</ng-template>

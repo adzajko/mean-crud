@@ -1,0 +1,22 @@
+.posts-list {
+  margin-top: 2rem;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__title {
+    margin-bottom: 0;
+  }
+}
+
+.table thead th, .table tbody td {
+  vertical-align: middle;
+}
+
+
+.btn {
+  display: block;
+  width: 100%;
+}
